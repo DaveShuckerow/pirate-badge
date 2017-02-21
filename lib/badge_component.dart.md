@@ -37,3 +37,12 @@
   - But since \_nameService is final, it has to be initialized when it’s declared, or in the constructor’s argument list.
 - setBadgeName
   - [String newName = ''] is an optional positional parameter with a default value of the empty string.
+
+### Step 6
+- ngOnInit() is one of the lifecycle hooks available in Angular. Angular calls ngOnInit() after the component is initialized.
+- Mark the function body with async, so this function can use the await keyword.
+- Asynchronous functions must return a Future.
+- Specifying @override and Future\<Null\> is optional, but it makes the intent of the code clearer.
+- Call the readyThePirates() function, which immediately returns a Future.
+- When the Future returned by readyThePirates() successfully completes, set up the UI.
+- Use try and catch to detect and handle errors.

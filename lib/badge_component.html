@@ -1,5 +1,5 @@
 <div class="widgets">
-  <input (input)="updateBadge($event.target.value)"
+  <input [disabled]="!isInputEnabled" (input)="updateBadge($event.target.value)"
          type="text" maxlength="15">
   <button [disabled]="!isButtonEnabled" (click)="generateBadge()">
     {{buttonText}}
