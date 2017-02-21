@@ -10,6 +10,8 @@ You'll need the following tools to build this codelab on your own:
  - Atom
  - Atom dart plugin
 
-## Step 1
+## Step 1: Creating a basic web app
 Do the steps
 `pub serve`
+
+## Step 2: Add the pirate badge component
