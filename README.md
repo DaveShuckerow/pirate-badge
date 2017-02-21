@@ -15,3 +15,4 @@ Do the steps
 `pub serve`
 
 ## Step 2: Add the pirate badge component
+Add in the badge_component files, and edit the app_component to add it in.

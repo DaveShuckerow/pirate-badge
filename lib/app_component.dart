@@ -1,6 +1,11 @@
 import 'package:angular2/core.dart';
 
-@Component(selector: 'my-app', template: '<h1>Hello {{name}}</h1>')
+import 'badge_component.dart';
+
+@Component(
+    selector: 'my-app',
+    templateUrl: 'app_component.html',
+    directives: const [BadgeComponent])
 class AppComponent {
   var name = 'Angular';
 }
