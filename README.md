@@ -66,9 +66,15 @@ resources.  This is a good application of the principle of **separation of
 concerns** and allows us to
  - only focus on application logic in `lib/badge_component.dart`
  - only focus on layout in `lib/badge_component.html`
- - and only focus on styling in `lib/badge_component.css`
+ - only focus on styling in `lib/badge_component.css`
 
-To use this new component, we need to add it to our AppComponent's template. Let's start by applying separation of concerns to our AppComponent.  Create a new file, `lib/app_component.html`, and let's write this new template:
+The variable we declare here is referenced inside the HTML template as
+`{{badgeName}}`.  As you update this variable, the rendered HTML will that shows
+this name will update too.
+
+To use this new component, we need to add it to our AppComponent's template.
+Let's start by applying separation of concerns to our AppComponent.  Create
+a new file, `lib/app_component.html`, and let's write this new template:
 ```
 <h1>Avast, Ye Pirates</h1>
 <pirate-badge></pirate-badge>
@@ -96,4 +102,5 @@ allows Angular to understand the `<pirate-badge>` selector in the template as
 a reference to the BadgeComponent that we previously defined.
 
 If you still have `pub serve` running, refreshing your page should recompile
-your code and show your new changes.  If not, try running `pub serve` again and see what happens.
+your code and show your new changes.  If not, try running `pub serve` again and
+see what happens.
