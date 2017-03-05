@@ -19,6 +19,10 @@ resulting `lib/` and `web/` directories for each step of this process.  You
 can read code from there or copy them into the top level if you need to.
 
 ## Step 1
+The code for step 1 is already in place at the top level of this repository.
+We have a template Angular app set up that you will be modifying into a pirate
+name badge generator over the course of this tutorial.
+
 We'll start by running the following commands:
 
 `pub get`
@@ -104,3 +108,29 @@ a reference to the BadgeComponent that we previously defined.
 If you still have `pub serve` running, refreshing your page should recompile
 your code and show your new changes.  If not, try running `pub serve` again and
 see what happens.
+
+## Step 3
+Now that we have a badge with a sample name on it, we'll update it to allow you
+to enter your own name.
+
+We'll start by adding to the top of the template for the BadgeComponent,
+`lib/badge_component.html`:
+```
+<div class="widgets">
+  <input (input)="updateBadge($event.target.value)"
+         type="text" maxlength="15">
+</div>
+```
+
+This adds an HTML5 input to our page.  Notice the event binding
+`(input)="updateBadge(...)"`.  We will need to go into our dart code and add
+an event handler with the same name.  Make this addition to the BadgeComponent
+class in `lib/badge_component.dart`:
+```
+void updateBadge(String inputName) {
+  badgeName = inputName;
+}
+```
+
+Now load and look at your changes.  You should be able to change your name by
+filling in the input box at the top of the page.

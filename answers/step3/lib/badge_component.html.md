@@ -1,4 +1,4 @@
-## Key notes on badge_component.html (Step 3)
+## Key notes on badge_component.html
 - \<input...\> defines an HTML5 input element.
 - The (input)="updateBadge(...)" text creates an event binding.
 - The target of the event appears to the left of the equals sign in parentheses, (input). This event binding listens for an input event on the input field.
