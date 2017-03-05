@@ -11,5 +11,13 @@ You'll need the following tools to build this codelab on your own:
  - Atom dart plugin
 
 ## Step 1
-Do the steps
+We'll start by running the following commands:
+
+`pub get`
+
+This will get all of the dependencies that this code will need to run in your
+browser.
+
 `pub serve`
+
+This will start a web server to run your Angular app.
