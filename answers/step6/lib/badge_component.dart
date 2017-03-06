@@ -38,7 +38,7 @@ class BadgeComponent implements OnInit {
   }
 
   @override
-  Future<Null> ngOnInit() async {
+  Future ngOnInit() async {
     try {
       await _nameService.readyThePirates();
       // on success, turn the UI on
