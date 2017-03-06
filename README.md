@@ -417,8 +417,8 @@ the pirate name data:
 
 This initializer is a good introduction to asynchronous programming in Dart.
 The `async` keyword indicates that this method is asynchronous.
-When readyThePirates is called, it will return an object known as a Future
-immediately.  This is similar to a Promise or a Pipeline in other languages.
+When readyThePirates is called, it will return a Future immediately.  This is
+similar to a Promise or a Pipeline in other languages.
 Code that calls readyThePirates will keep executing with the Future it returned
 in memory.  readyThePirates will continue executing, and make an async call of
 its own to HttpRequest.getString.  The `await` keyword tells this method to
@@ -426,6 +426,7 @@ stop executing until the future returned by HttpRequest.getString completes.
 Because of this, the variable jsonString will be a String, and not a Future.
 After readyThePirates completes, its Future will complete as well, and if the
 calling code was `await`ing it, then that code will continue its execution.
+Note that `await` can only be used inside of an `async` method.
 
 Now that the NameService is asynchronously loading data, our BadgeComponent has
 a new state where it could try to create a pirate name, but fail because the
