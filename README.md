@@ -211,8 +211,8 @@ class NameService {}
 ```
 
 We've imported just the Random class from the dart built-in math package.
-Additionally, we've pulled in Angular2's dependency injection framework.
-More on that later.
+Additionally, we've pulled in the @Injectable annotation from Angular2's
+dependency injection framework.  More on that later.
 
 For now, let's fill in our name service.  We want to be able to randomly
 generate a pirate name from any first name.  If we don't have a first name
@@ -267,6 +267,17 @@ roughly the same meaning as a `private` declaration does in Java.
 Meanwhile, The `=>` operator in Dart is just a shorthand for a one-line method
 that returns the result of the one line.
 
+For example, the two methods
+```
+String doFoo() {
+  return 'foo';
+}
+
+String doFooAgain() => 'foo';
+```
+are identical.
+
+
 Now that we have our helper methods set up, we'll add in the public method
 that we need to generate a pirate name:
 ```
@@ -288,8 +299,8 @@ import 'name_service.dart';
 
 Now, we'll add a NameService field to our BadgeComponent.  We don't want to
 access the NameService from the HTML template, and we don't want it to change
-over the lifetime of our BadgeComponent, so we'll do two engineering
-best-practices and declare it as both final and private:
+over the lifetime of our BadgeComponent, so we'll use two engineering
+best-practices at once and declare it as both final and private:
 ```
 final NameService _nameService;
 ```
@@ -302,7 +313,9 @@ BadgeComponent(this._nameService);
 Prefixing the parameter with `this.` is a shorthand in Dart constructors
 that directly assigns that parameter to the corresponding field in the class.
 This saves the trouble of having to do this on your own in the initialization
-step of the constructor like you would in many Java.
+step of the constructor like you would in many Java.  Also note that with this
+syntax, you don't need to declare the type; Dart is able to infer and require
+that this parameter have the same type as the field that it is assigning to.
 
 Now, let's add a new method, setBadgeName, that uses the \_nameService:
 ```
