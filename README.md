@@ -3,6 +3,15 @@ Pirate badge app written with Angular Dart.
 
 Walking through an introduction codelab to development with Angular and Dart.
 
+# Pirate names
+A pirate name is a normal first name (such as John, Francesca, or Xiaozhou)
+and appending an appellation to this name.  Some sample pirate names:
+```
+Anne the Young
+Roger the Axe
+Morgan the Zesty
+```
+
 # Guide
 ## Step 0
 You'll need the following tools to build this codelab on your own:
@@ -169,3 +178,22 @@ And then the badge generator:
 ```
 
 Go ahead and try this out.
+
+## Step 5
+Now, we're going to add in some real name generation.  To do this, we are going
+to explore the concept of a service.
+
+A service is a utility class that is responsible for performing a task
+other than just being a UI component.  We are going to create a NameService,
+which will be responsible for turning names into pirate names.
+
+Start by making a file, `name_service.dart`.  Fill it with this stub:
+
+```
+import 'dart:math' show Random;
+
+import 'package:angular2/core.dart';
+
+@Injectable()
+class NameService {}
+```
