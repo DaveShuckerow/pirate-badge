@@ -195,9 +195,9 @@ Go ahead and try this out.
 Now, we're going to add in some real name generation.  To do this, we are going
 to explore the concept of a service.
 
-A service is a utility class that is responsible for performing a task
-other than just being a UI component.  We are going to create a NameService,
-which will be responsible for turning names into pirate names.
+In Angular, a service is a utility class that is responsible for performing a
+task other than just being a UI component.  We are going to create a
+NameService, which will be responsible for turning names into pirate names.
 
 Start by making a file, `name_service.dart`.  Fill it with this stub:
 
