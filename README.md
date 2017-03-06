@@ -197,3 +197,72 @@ import 'package:angular2/core.dart';
 @Injectable()
 class NameService {}
 ```
+
+We've imported just the Random class from the dart built-in math package.
+Additionally, we've pulled in Angular2's dependency injection framework.
+More on that later.
+
+For now, let's fill in our name service.  We want to be able to randomly
+generate a pirate name from any first name.  If we don't have a first name
+to generate a pirate name for, then we want to randomly generate a complete
+pirate name.
+
+We'll start by setting up a default list of pirate names inside of the
+NameService class:
+```
+  final _names = <String>[
+    'Anne',
+    'Mary',
+    'Jack',
+    'Morgan',
+    'Roger',
+    'Bill',
+    'Ragnar',
+    'Ed',
+    'John',
+    'Jane',
+  ];
+
+  final _appellations = <String>[
+    'Jackal',
+    'King',
+    'Queen',
+    'Red',
+    'Stalwart',
+    'Axe',
+    'Young',
+    'Brave',
+    'Eager',
+    'Wily',
+    'Zesty',
+  ];
+```
+
+Then, we'll give the NameService a Random number generator and some private
+helper methods to generate names from:
+```
+  static final Random _indexGen = new Random();
+
+  String _getRandomFirstName() => _names[_indexGen.nextInt(_names.length)];
+
+  String _getRandomAppellation() =>
+      _appellations[_indexGen.nextInt(_appellations.length)];
+```
+
+Note the leading underscore on all the names, as well as the `=>` notation.
+The syntax `_foo` indicates that this variable is private to a class.  It has
+roughly the same meaning as a `private` declaration does in Java.
+Meanwhile, The `=>` operator in Dart is just a shorthand for a one-line method
+that returns the result of the one line.
+
+Now that we have our helper methods set up, we'll add in the public method
+that we need to generate a pirate name:
+```
+  String getPirateName(String firstName) {
+    if (firstName == null || firstName.trim().isEmpty) {
+      firstName = _getRandomFirstName();
+    }
+
+    return '$firstName the ${_getRandomAppellation()}';
+  }
+```
