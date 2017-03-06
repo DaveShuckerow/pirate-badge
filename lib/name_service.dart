@@ -21,6 +21,7 @@ class NameService {
   final _appellations = <String>[
     'Jackal',
     'King',
+    'Queen',
     'Red',
     'Stalwart',
     'Axe',
