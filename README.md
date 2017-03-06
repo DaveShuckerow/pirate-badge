@@ -266,3 +266,83 @@ that we need to generate a pirate name:
     return '$firstName the ${_getRandomAppellation()}';
   }
 ```
+
+Now that the NameService is complete, we'll look at using it from inside of
+the BadgeComponent.  We'll start by opening `lib/badge_component.dart` and
+adding an import for our new NameService's file:
+```
+import 'name_service.dart';
+```
+
+Now, we'll add a NameService field to our BadgeComponent.  We don't want to
+access the NameService from the HTML template, and we don't want it to change
+over the lifetime of our BadgeComponent, so we'll do two engineering
+best-practices and declare it as both final and private:
+```
+final NameService _nameService;
+```
+
+Declare a constructor that takes the \_nameService as a parameter:
+```
+BadgeComponent(this._nameService);
+```
+
+Prefixing the parameter with `this.` is a shorthand in Dart constructors
+that directly assigns that parameter to the corresponding field in the class.
+This saves the trouble of having to do this on your own in the initialization
+step of the constructor like you would in many Java.
+
+Now, let's add a new method, setBadgeName, that uses the \_nameService:
+```
+void setBadgeName([String newName = '']) {
+  if (newName == null) return;
+  badgeName = _nameService.getPirateName(newName);
+}
+```
+
+The [] surrounding the parameter declares that parameter as optional.  If you
+call setBadgeName() without providing a parameter, the parameter newName will
+be assigned a default value (in this case, the empty string).
+
+We'll update the generateBadge method to use this functionality:
+```
+void generateBadge() {
+  setBadgeName();
+}
+```
+
+Let's also modify our updateBadge method to use the new setBadgeName
+instead of directly assigning to the badgeName field:
+```
+  void updateBadge(String inputName) {
+    setBadgeName(inputName);
+    if (inputName.trim().isEmpty) {
+      buttonText = 'Arrr! Write yer name!';
+      isButtonEnabled = false;
+    } else {
+      buttonText = 'Aye! Gimme a name!';
+      isButtonEnabled = true;
+    }
+  }
+```
+
+Now that our behavior is complete, we can talk about how to properly give
+the BadgeComponent a NameService to use.  We will use dependency injection
+(also known as DI) to do this.  DI is a complicated topic, but simply put,
+it's a way to swap out different implementations of an interface inside of a
+large software system more easily than explicitly providing those
+dependencies.  In Angular, we can inject components with services that we've
+annotated as being @Injectable.  This is the easiest way to test and maintain
+both the components and the services.
+
+We tell BadgeComponent how to inject NameService by adding a providers field to the @Component annotation:
+```
+@Component(
+    selector: 'pirate-badge',
+    templateUrl: 'badge_component.html',
+    styleUrls: const ['badge_component.css'],
+    providers: const [NameService])
+```
+
+Now that we've done this, Angular should be able to build your new page.
+Go ahead and try it out!
