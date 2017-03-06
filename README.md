@@ -211,7 +211,7 @@ class NameService {}
 ```
 
 We've imported just the Random class from the dart built-in math package.
-Additionally, we've pulled in the @Injectable annotation from Angular2's
+Additionally, we're using the @Injectable annotation from Angular2's
 dependency injection framework.  More on that later.
 
 For now, let's fill in our name service.  We want to be able to randomly
@@ -313,7 +313,7 @@ BadgeComponent(this._nameService);
 Prefixing the parameter with `this.` is a shorthand in Dart constructors
 that directly assigns that parameter to the corresponding field in the class.
 This saves the trouble of having to do this on your own in the initialization
-step of the constructor like you would in many Java.  Also note that with this
+step of the constructor like you would in Java.  Also note that with this
 syntax, you don't need to declare the type; Dart is able to infer and require
 that this parameter have the same type as the field that it is assigning to.
 
@@ -370,7 +370,7 @@ the @Component annotation:
     providers: const [NameService])
 ```
 
-Now that we've done this, Angular should be able to build your new page.
+Now that we've done this, Angular should be able to build the new page.
 Go ahead and try it out!
 
 ## Step 6
@@ -388,7 +388,7 @@ import 'dart:html';
 These Dart built-in libraries will help us bring data down from a remote server.
 
 We need to bring our data down from somewhere.  We've provided a collection of
-JSON-formatted names at https://www.dartlang.org/f/piratenames.json which we
+JSON-formatted names at https://www.dartlang.org/f/piratenames.json, which we
 will add as a private constant:
 ```
 const _namesPath = 'https://www.dartlang.org/f/piratenames.json';
@@ -417,12 +417,12 @@ the pirate name data:
 
 This initializer is a good introduction to asynchronous programming in Dart.
 The `async` keyword indicates that this method is asynchronous.
-When readyThePirates is called, it will return a Future immediately.  This is
-similar to a Promise or a Pipeline in other languages.
+When readyThePirates is called, it will return a Future immediately (this is
+similar to a Promise or a Pipeline in other languages).
 Code that calls readyThePirates will keep executing with the Future it returned
 in memory.  readyThePirates will continue executing, and make an async call of
 its own to HttpRequest.getString.  The `await` keyword tells this method to
-stop executing until the future returned by HttpRequest.getString completes.
+stop executing until the Future returned by HttpRequest.getString completes.
 Because of this, the variable jsonString will be a String, and not a Future.
 After readyThePirates completes, its Future will complete as well, and if the
 calling code was `await`ing it, then that code will continue its execution.
@@ -452,8 +452,8 @@ We also need to set BadgeComponent up to properly initialize the NameService.
 To do this, we will implement a part of the Angular lifecycle, the OnInit event.
 This will be called when the component is first initialized.
 
-First, we want to initialize this class asynchronously, so make the appropriate
-import at the beginning of the file:
+First, we want to initialize this component asynchronously, so make the
+appropriate import at the beginning of the file:
 ```
 import 'dart:async';
 ```
@@ -481,4 +481,4 @@ Now, we just need to implement the ngOnInit method:
 ```
 
 Go ahead and try your changes out; you should now have a complete Angular2 app
-that can even make API requests of remote servers!
+that can even make API requests to remote servers!
