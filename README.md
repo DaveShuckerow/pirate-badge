@@ -113,7 +113,7 @@ new template:
 We replaced the `template` field with `templateUrl`, and added a reference to
 the new template file we created for AppComponent.  We also added a
 `directives` field, which expects a constant list of other components.
-Adding the BadgeComponent, which declares its selector as `pirate-badge`
+Adding the BadgeComponent, which declares its selector as `pirate-badge`,
 allows Angular to understand the `<pirate-badge>` selector in the template as
 a reference to the BadgeComponent that we previously defined.
 
