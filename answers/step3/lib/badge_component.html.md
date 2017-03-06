@@ -1,0 +1,11 @@
+## Key notes on badge_component.html
+- \<input...\> defines an HTML5 input element.
+- The (input)="updateBadge(...)" text creates an event binding.
+- The target of the event appears to the left of the equals sign in parentheses, (input). This event binding listens for an input event on the input field.
+- The template statement, updateBadge($event.target.value), appears (in quotes) to the right of the equals sign.
+- This template statement calls a method called updateBadge() that you’ll define soon in Dart code. The argument is the value that the user entered.
+- As you can see, a template statement can use functions and variables defined in a component’s Dart code.
+- The event object, $event, contains the value of the raised event. In this example, the event object represents the DOM event object, so the new value resides in $event.target.value.
+- The template statement executes whenever an input event occurs on this element.
+- By convention, a template statement is short—more complex logic should be placed in a function and called from the template statement.
+- The maxLength="15" text limits user input to 15 characters.

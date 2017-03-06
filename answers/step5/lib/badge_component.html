@@ -1,0 +1,12 @@
+<div class="widgets">
+  <input (input)="updateBadge($event.target.value)"
+         type="text" maxlength="15">
+  <button [disabled]="!isButtonEnabled" (click)="generateBadge()">
+    {{buttonText}}
+  </button>
+</div>
+
+<div class="badge">
+  <div class="greeting">Arrr! Me name be</div>
+  <div class="name">{{badgeName}}</div>
+</div>

@@ -1,18 +1,17 @@
-import 'dart:async';
 import 'package:angular2/core.dart';
-import 'package:pirate_badge/name_service.dart';
+
+import 'name_service.dart';
 
 @Component(
     selector: 'pirate-badge',
     templateUrl: 'badge_component.html',
     styleUrls: const ['badge_component.css'],
     providers: const [NameService])
-class BadgeComponent implements OnInit {
+class BadgeComponent {
   final NameService _nameService;
   String badgeName = 'Sergey';
   String buttonText = 'Aye! Gimme a name!';
-  bool isButtonEnabled = false;
-  bool isInputEnabled = false;
+  bool isButtonEnabled = true;
 
   BadgeComponent(this._nameService);
 
@@ -33,19 +32,6 @@ class BadgeComponent implements OnInit {
     } else {
       buttonText = 'Aye! Gimme a name!';
       isButtonEnabled = true;
-    }
-  }
-
-  @override
-  Future<Null> ngOnInit() async {
-    try {
-      await _nameService.readyThePirates();
-      // on success, turn the UI on
-      isButtonEnabled = true;
-      isInputEnabled = true;
-    } catch (errr) {
-      badgeName = 'Arrrr! an arrrror has occarrred';
-      print('Unable to load names');
     }
   }
 }
