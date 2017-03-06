@@ -113,7 +113,7 @@ new template:
 We replaced the `template` field with `templateUrl`, and added a reference to
 the new template file we created for AppComponent.  We also added a
 `directives` field, which expects a constant list of other components.
-Adding the BadgeComponent, which declares its selector as `pirate-badge`,
+Adding the BadgeComponent, which declares its selector as `pirate-badge`
 allows Angular to understand the `<pirate-badge>` selector in the template as
 a reference to the BadgeComponent that we previously defined.
 
@@ -159,10 +159,12 @@ the div field where `class = "widgets"` inside of `lib/badge_component.html`:
 </div>
 ```
 
-Note that we've created two additional event bindings, one to a boolean field
-and one to a badge generator method.  Let's add these two to our BadgeComponent
+Note that we've created three additional event bindings, one to a boolean field,
+one to a badge generator method, and one to text to show in the button.
+Let's add these to our BadgeComponent:
 class in `lib/badge_component.dart`:
 ```
+  String buttonText = 'Aye! Gimme a name!';
   bool isButtonEnabled = true;
 ```
 
