@@ -134,3 +134,38 @@ void updateBadge(String inputName) {
 
 Now load and look at your changes.  You should be able to change your name by
 filling in the input box at the top of the page.
+
+## Step 4
+It's time to start generating pirate names.  Add a button to the bottom of
+the div field where `class = "widgets"` inside of `lib/badge_component.html`:
+```
+<div class="widgets">
+  ...
+  <button [disabled]="!isButtonEnabled" (click)="generateBadge()">
+    {{buttonText}}
+  </button>
+</div>
+```
+
+Note that we've created two additional event bindings, one to a boolean field
+and one to a badge generator method.  Let's add these two to our BadgeComponent
+class in `lib/badge_component.dart`:
+```
+  bool isButtonEnabled = true;
+```
+
+And then the badge generator:
+```
+  void updateBadge(String inputName) {
+    badgeName = inputName;
+    if (inputName.trim().isEmpty) {
+      buttonText = 'Arrr! Write yer name!';
+      isButtonEnabled = false;
+    } else {
+      buttonText = 'Aye! Gimme a name!';
+      isButtonEnabled = true;
+    }
+  }
+```
+
+Go ahead and try this out.
