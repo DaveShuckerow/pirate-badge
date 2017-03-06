@@ -46,7 +46,8 @@ Now run
 This will compile your app to javascript and run it at http://localhost:8080.
 
 ## Step 2
-In this step we will get started on our badge.  We'll start by defining an HTML template.
+In this step we will get started on our badge.  We'll start by defining an HTML
+template.
 
 Create a new file `lib/badge_component.html`, and add in the following to it:
 ```
@@ -335,7 +336,8 @@ dependencies.  In Angular, we can inject components with services that we've
 annotated as being @Injectable.  This is the easiest way to test and maintain
 both the components and the services.
 
-We tell BadgeComponent how to inject NameService by adding a providers field to the @Component annotation:
+We tell BadgeComponent how to inject NameService by adding a providers field to
+the @Component annotation:
 ```
 @Component(
     selector: 'pirate-badge',
@@ -346,3 +348,77 @@ We tell BadgeComponent how to inject NameService by adding a providers field to 
 
 Now that we've done this, Angular should be able to build your new page.
 Go ahead and try it out!
+
+## Step 6
+Generating our own names is nice, but the hardcoded lists are a bit limited.
+Real web apps can talk to remote servers to get lots more data.
+
+Now, we're going to try doing just that.  Start by opening up
+`lib/name_service.dart` and adding these new imports:
+```
+import 'dart:async';
+import 'dart:convert';
+import 'dart:html';
+```
+
+These Dart built-in libraries will help us bring data down from a remote server.
+
+We need to bring our data down from somewhere.  We've provided a collection of
+JSON-formatted names at https://www.dartlang.org/f/piratenames.json which we
+will add as a private constant:
+```
+const _namesPath = 'https://www.dartlang.org/f/piratenames.json';
+```
+
+Let's take out the hardcoded values for \_names and \_appelations inside the
+NameService class:
+```
+  final _names = <String>[];
+  final _appellations = <String>[];
+```
+
+Now that we have our methods, we'll add an initialization method to the
+NameService class to have it go fetch
+the pirate name data:
+```
+  Future readyThePirates() async {
+    if (_names.isNotEmpty && _appellations.isNotEmpty) return;
+
+    var jsonString = await HttpRequest.getString(_namesPath);
+    var pirateNames = JSON.decode(jsonString);
+    _names.addAll(pirateNames['names']);
+    _appellations.addAll(pirateNames['appellations']);
+  }
+```
+
+This initializer is a good introduction to asynchronous programming in Dart.
+The `async` keyword indicates that this method is asynchronous.
+When readyThePirates is called, it will return an object known as a Future
+immediately.  This is similar to a Promise or a Pipeline in other languages.
+Code that calls readyThePirates will keep executing with the Future it returned
+in memory.  readyThePirates will continue executing, and make an async call of
+its own to HttpRequest.getString.  The `await` keyword tells this method to
+stop executing until the future returned by HttpRequest.getString completes.
+Because of this, the variable jsonString will be a String, and not a Future.
+After readyThePirates completes, its Future will complete as well, and if the
+calling code was `await`ing it, then that code will continue its execution.
+
+Now that the NameService is asynchronously loading data, our BadgeComponent has
+a new state where it could try to create a pirate name, but fail because the
+names haven't been initialized yet.  We'll handle this by blocking user input
+while the names are loading.
+
+Start by modifying the input element in `lib/badge_component.html`:
+```
+<input [disabled]="!isInputEnabled" (input)="updateBadge($event.target.value)"
+       type="text" maxlength="15">
+```
+
+The field isInputEnabled doesn't exist yet.  Let's add it in to our
+BadgeComponent class in `lib/badge_component.dart`.  While we're doing this,
+we'll also disable the button by default so that the user can't try to generate
+a random name while names are loading.
+```
+bool isButtonEnabled = false;
+bool isInputEnabled = false;
+```
