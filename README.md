@@ -130,7 +130,7 @@ We'll start by adding to the top of the template for the BadgeComponent,
 ```
 <div class="widgets">
   <input (input)="updateBadge($event.target.value)"
-         type="text" maxlength="15">
+          type="text" maxlength="15">
 </div>
 ```
 
@@ -169,6 +169,13 @@ class in `lib/badge_component.dart`:
 ```
 
 And then the badge generator:
+```
+  void generateBadge() {
+    badgeName = "Davy Jones";
+  }
+```
+
+Now, we'll modify updateBadge to interact with the button as well.
 ```
   void updateBadge(String inputName) {
     badgeName = inputName;
