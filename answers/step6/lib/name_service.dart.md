@@ -1,0 +1,16 @@
+## Key notes from name_service.dart
+- Imports
+  - The dart:async library provides for asynchronous programming.
+  - The dart:convert library provides convenient access to the most commonly used JSON conversion utilities.
+  - The dart:html library contains the classes for all DOM element types, in addition to functions for accessing the DOM.
+- \_names and \_appellations
+  - <String>[] is equivalent to new List<String>().
+- readyThePirates
+  - readyThePirates is marked with the async keyword. An asynchronous function returns a Future immediately, so the caller has the opportunity to do something else while waiting for the function to complete its work.
+  - The Future class (from dart:async) provides a way to get a value in the future. (Dart Futures are similar to JavaScript Promises.)
+  - HttpRequest is a dart:html utility for retrieving data from a URL.
+  - getString() is a convenience method for doing a simple GET request that returns a string.
+  - getString() is asynchronous. It sets up the GET request and returns a Future that completes when the GET request is finished.
+  - The await expression, which can only be used in an async function, causes execution to pause until the GET request is finished (when the Future returned by getString() completes).
+  - After the GET request returns a JSON string, the code extracts pirate names and appellations from the string.
+  - Would anything strange happen if I accidentally called readyThePirates twice?
