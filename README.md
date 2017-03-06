@@ -422,3 +422,38 @@ a random name while names are loading.
 bool isButtonEnabled = false;
 bool isInputEnabled = false;
 ```
+
+We also need to set BadgeComponent up to properly initialize the NameService.
+To do this, we will implement a part of the Angular lifecycle, the OnInit event.
+This will be called when the component is first initialized.
+
+First, we want to initialize this class asynchronously, so make the appropriate
+import at the beginning of the file:
+```
+import 'dart:async';
+```
+
+Now, modify the definition of BadgeComponent so that it implements the
+OnInit interface:
+```
+class BadgeComponent implements OnInit {
+```
+
+Now, we just need to implement the ngOnInit method:
+```
+  @override
+  Future ngOnInit() async {
+    try {
+      await _nameService.readyThePirates();
+      // on success, turn the UI on
+      isButtonEnabled = true;
+      isInputEnabled = true;
+    } catch (errr) {
+      badgeName = 'Arrrr! an arrrror has occarrred';
+      print('Unable to load names');
+    }
+  }
+```
+
+Go ahead and try your changes out; you should now have a complete Angular2 app
+that can even make API requests of remote servers!
