@@ -18,7 +18,7 @@ You'll need the following tools to build this codelab on your own:
  - [Dart SDK](https://www.dartlang.org/install)
  - A code editor
    - I recommend [Atom](https://atom.io) and the Atom dart plugin
-   - IntelliJ Idea also has a very good Dart plugin that you install.
+   - IntelliJ Idea also has a very good Dart plugin that you can install.
 
 Bring up a command line and move into the directory that contains this README
 file.  We'll do the whole codelab from this directory.
