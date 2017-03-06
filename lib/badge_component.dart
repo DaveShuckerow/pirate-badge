@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:angular2/core.dart';
-import 'package:pirate_badge/name_service.dart';
+
+import 'name_service.dart';
 
 @Component(
     selector: 'pirate-badge',
