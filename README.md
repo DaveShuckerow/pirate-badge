@@ -1,11 +1,13 @@
 # Darrrt
 Pirate badge app written with Angular Dart.
 
-Walking through an introduction codelab to development with Angular and Dart.
+In this repo, we'll walk through an introductory codelab to development with
+Angular and Dart.
 
 # Pirate names
-A pirate name is a normal first name (such as John, Francesca, or Xiaozhou)
-and appending an appellation to this name.  Some sample pirate names:
+A pirate name is made by taking a normal first name (such as John, Francesca,
+or Xiaozhou) and appending an appellation to this name.  Some sample pirate
+names:
 ```
 Anne the Young
 Roger the Axe
